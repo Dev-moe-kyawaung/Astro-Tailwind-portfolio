@@ -1,0 +1,352 @@
+---
+import Hero from '../components/Hero.astro';
+import { projects } from '../data/projects';
+import { skills } from '../data/skills';
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moe Kyaw Aung — Senior Android Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Moe Kyaw Aung, Senior Android Developer. Flutter & Kotlin apps, web projects, CI/CD, and premium design."
+    />
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dye5qpwii/image/upload/v1778527878/IMG_20260430_053105_uef0yr.png" />
+  </head>
+  <body>
+    <!-- Hero -->
+    <Hero />
+
+    <!-- Apps & Projects -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <div class="s-label">App Collection</div>
+        <h2 class="s-title">Featured Apps & Projects</h2>
+      </div>
+
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <article class="project-card">
+            <div class="project-icon">{project.icon}</div>
+            <img
+              class="project-image"
+              src={project.image || ""}
+              alt={project.title}
+              hidden={!project.image}
+            />
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-desc">{project.description}</p>
+            <div class="project-tech">
+              {project.tech.map((t) => (
+                <span class="tech-chip">{t}</span>
+              ))}
+            </div>
+            <div class="project-links">
+              {project.links?.github && (
+                <a
+                  class="link-primary"
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub ↗
+                </a>
+              )}
+              {project.links?.web && (
+                <a
+                  class="link-secondary"
+                  href={project.links.web}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Web ↗
+                </a>
+              )}
+              {project.links?.app && (
+                <a
+                  class="link-secondary"
+                  href={project.links.app}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  App ↗
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <div class="s-label">Tech Stack</div>
+        <h2 class="s-title">Skills & Technologies</h2>
+      </div>
+
+      <div class="skills-cloud">
+        {skills.languages.map((s) => <span class="skill-chip">{s}</span>)}
+        {skills.frameworks.map((s) => <span class="skill-chip">{s}</span>)}
+        {skills.mobile.map((s) => <span class="skill-chip">{s}</span>)}
+        {skills.backend_cloud.map((s) => <span class="skill-chip">{s}</span>)}
+        {skills.devops_tools.map((s) => <span class="skill-chip">{s}</span>)}
+      </div>
+
+      <div class="skills-focus">
+        <h3 class="focus-title">Focus Areas</h3>
+        <ul class="focus-list">
+          <li><strong>Mobile:</strong> {skills.focus.Mobile}</li>
+          <li><strong>Backend:</strong> {skills.focus.Backend}</li>
+          <li><strong>Security:</strong> {skills.focus.Security}</li>
+          <li><strong>AI / ML:</strong> {skills.focus.AI_ML}</li>
+        </ul>
+        <p class="focus-philosophy">{skills.philosophy}</p>
+        <p class="focus-building">
+          Currently building: <strong>{skills.currentlyBuilding}</strong>
+        </p>
+        <p class="focus-certs">
+          Certifications: <strong>{skills.certifications}</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer class="footer" id="contact">
+      <div class="footer-content">
+        <h3 class="footer-title">Contact</h3>
+        <div class="footer-phones">
+          <a href="tel:+959889000889">+95 9 889 000 889</a>
+          <a href="tel:+959666000050">+959 666 000 050</a>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/Dev-moe-kyawaung" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://gravatar.com/moekyawaung2026" target="_blank" rel="noreferrer">Gravatar</a>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      html, body {
+        background: #0b0f19;
+        color: #f9fafb;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+      }
+
+      .section {
+        padding: 5rem 5%;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        margin-bottom: 2.5rem;
+      }
+
+      .s-label {
+        font-size: 0.9rem;
+        color: #6b7280;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .s-title {
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      /* Projects */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .project-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 1rem;
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+
+      .project-icon {
+        font-size: 1.6rem;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 12rem;
+        border-radius: 0.7rem;
+        object-fit: cover;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .project-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+
+      .project-desc {
+        font-size: 0.95rem;
+        color: #9ca3af;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .tech-chip {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.55rem;
+        border-radius: 0.4rem;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .project-links {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 0.2rem;
+      }
+
+      .link-primary,
+      .link-secondary {
+        font-size: 0.85rem;
+        text-decoration: none;
+        padding: 0.35rem 0.6rem;
+        border-radius: 0.4rem;
+      }
+
+      .link-primary {
+        background: #3b82f6;
+        color: #fff;
+      }
+
+      .link-primary:hover {
+        background: #2563eb;
+      }
+
+      .link-secondary {
+        background: rgba(255,255,255,0.06);
+        color: #f9fafb;
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .link-secondary:hover {
+        background: rgba(255,255,255,0.12);
+      }
+
+      /* Skills */
+      .skills-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .skill-chip {
+        font-size: 0.85rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 0.5rem;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .skills-focus {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 1rem;
+        padding: 1.2rem;
+      }
+
+      .focus-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.7rem;
+      }
+
+      .focus-list {
+        margin: 0;
+        padding-left: 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      .focus-list li {
+        margin-bottom: 0.4rem;
+      }
+
+      .focus-philosophy,
+      .focus-building,
+      .focus-certs {
+        font-size: 0.9rem;
+        color: #9ca3af;
+        margin: 0.4rem 0;
+      }
+
+      /* Footer */
+      .footer {
+        background: rgba(255,255,255,0.02);
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding: 3rem 5%;
+        margin-top: 3rem;
+      }
+
+      .footer-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+
+      .footer-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .footer-phones,
+      .footer-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-phones a,
+      .footer-links a {
+        color: #f9fafb;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-phones a:hover,
+      .footer-links a:hover {
+        color: #9ca3af;
+      }
+
+      @media (max-width: 900px) {
+        .section {
+          padding: 3rem 5%;
+        }
+        .s-title {
+          font-size: 1.6rem;
+        }
+        .hero-name {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </body>
+</html>
