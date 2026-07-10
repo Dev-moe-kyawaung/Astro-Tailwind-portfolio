@@ -12,7 +12,6 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  // Featured / Senior-level apps
   {
     title: "Social Dashboard",
     description:
